@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wallet | COIN PREDICTION</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Head -->
+  <header class="head">
+    <div class="container flex items-center justify-between">
+      <a href="index.html" class="brand">COIN <span class="accent">PREDICTION</span></a>
+      <nav class="nav-actions">
+        <a href="#" class="nav-btn">Login</a>
+        <a href="#" class="nav-btn primary">Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Wallet -->
+  <section class="wallet-hero">
+    <div class="container">
+      <h1 class="wallet-title">Wallet</h1>
+      <p class="wallet-sub">Manage your funds and track your transactions.</p>
+
+      <div class="balance-card card card-pad mt-40">
+        <div class="balance-label">Available balance</div>
+        <div class="balance-value" id="balanceValue">₹0.00</div>
+        <div class="balance-currency">INR</div>
+      </div>
+
+      <div class="action-grid">
+        <button class="action-btn primary" id="addMoneyBtn">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Add money</span>
+        </button>
+        <button class="action-btn" id="withdrawMoneyBtn">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Withdraw money</span>
+        </button>
+      </div>
+
+      <div class="tx-history">
+        <div class="flex justify-between items-center mb-16">
+          <h2 class="text-lg font-semibold">Recent transactions</h2>
+          <a href="#" class="text-xs font-medium text-muted opacity-60">View all</a>
+        </div>
+        <div class="tx-list" id="txList">
+          <!-- transactions injected by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add money modal -->
+  <div class="modal-overlay" id="addModal">
+    <button class="close-modal" id="closeAddModal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="modal">
+      <div class="modal-title">Add money</div>
+      <form id="addForm">
+        <div class="form-group">
+          <label class="form-label">Amount (INR)</label>
+          <input type="number" class="form-input" id="addAmount" placeholder="0.00" min="0" step="0.01" required />
+          <p class="form-hint">Minimum deposit: ₹10</p>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" id="cancelAdd">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add funds</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Withdraw money modal -->
+  <div class="modal-overlay" id="withdrawModal">
+    <button class="close-modal" id="closeWithdrawModal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="modal">
+      <div class="modal-title">Withdraw money</div>
+      <form id="withdrawForm">
+        <div class="form-group">
+          <label class="form-label">Amount (INR)</label>
+          <input type="number" class="form-input" id="withdrawAmount" placeholder="0.00" min="0" step="0.01" required />
+          <p class="form-hint">Available: <span id="availBalance">₹0.00</span></p>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" id="cancelWithdraw">Cancel</button>
+          <button type="submit" class="btn btn-primary">Withdraw funds</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bottom navigation -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <span>Home</span>
+    </a>
+    <a href="wallet.html" class="nav-item active">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2" ry="2"></rect><path d="M16 2a8 8 0 0 1 8 8v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4a8 8 0 0 1 8-8z"></path></svg>
+      <span>Wallet</span>
+    </a>
+    <a href="about.html" class="nav-item">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      <span>About</span>
+    </a>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
