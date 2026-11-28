@@ -50,7 +50,13 @@ function updateAuthUI() {
   } else {
     // Logged out: show Login with Google + Register with Google
     const links = navActions.querySelectorAll('a.nav-btn');
-    links.forEach(l => l.style.display = '');
+    links.forEach(l => {
+      l.style.display = '';
+      l.onclick = (e) => {
+        e.preventDefault();
+        signInWithGoogle();
+      };
+    });
 
     const googleLogin = document.createElement('button');
     googleLogin.type = 'button';
